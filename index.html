@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>✨ PREMIUM UNLOCK • 18+ ULTRA HD</title>
+    <title>🎬 CINEMA PREMIUM • 4K STREAM</title>
     
     <!-- Telegram WebApp & Adsgram Script -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -17,707 +17,711 @@
         }
 
         body {
-            background: #0b0710;
-            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            padding: 20px 16px 40px;
-            color: #f3eefc;
+            background: #0a0a0f;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            color: #f0f0f0;
+            padding: 0;
+            min-height: 100vh;
         }
 
-        /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,500;14..32,700;14..32,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap');
 
-        .container {
+        .app-container {
             max-width: 560px;
             margin: 0 auto;
+            background: linear-gradient(145deg, #0e0e16 0%, #07070c 100%);
+            min-height: 100vh;
             position: relative;
-            z-index: 2;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
 
-        /* --- VERIFICATION OVERLAY (FULL GLASS) --- */
+        /* --- VERIFICATION OVERLAY (POPUP STYLE WITH 3 BUTTONS - UPDATED DESIGN) --- */
         .verify-overlay {
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at 30% 10%, #0a0718, #03010a);
+            background: radial-gradient(circle at 30% 20%, #0f0c1f, #020105);
             z-index: 10000;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            backdrop-filter: blur(12px);
-            transition: opacity 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
         .verify-overlay.hide {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
         }
-        .verify-card {
-            background: rgba(18, 14, 30, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 56px;
-            padding: 48px 32px;
+        .cinema-ticket {
+            background: linear-gradient(145deg, #1a1c2e, #0c0d1a);
+            border-radius: 64px;
+            padding: 40px 28px;
             text-align: center;
-            max-width: 380px;
+            max-width: 400px;
             width: 88%;
-            border: 1px solid rgba(255, 80, 180, 0.6);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 100, 200, 0.2);
-        }
-        .verify-glow {
-            font-size: 70px;
-            filter: drop-shadow(0 0 20px #ff3b8c);
-            margin-bottom: 16px;
-        }
-        .verify-card h2 {
-            font-size: 32px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #FFB8E0, #FF66B5);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
-            margin-bottom: 12px;
-        }
-        .verify-card p {
-            color: #cdbde8;
-            font-weight: 500;
-            margin-bottom: 32px;
-            font-size: 15px;
-        }
-        .watch-video-btn {
-            background: linear-gradient(105deg, #ff2870, #ff6a3c);
-            border: none;
-            padding: 16px 40px;
-            border-radius: 80px;
-            font-size: 20px;
-            font-weight: 800;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.25s;
-            box-shadow: 0 12px 28px #ff1f6e40;
-            letter-spacing: 1px;
-        }
-        .watch-video-btn:active { transform: scale(0.96); }
-        .watch-video-btn:disabled { opacity: 0.6; transform: none; cursor: not-allowed; }
-
-        /* Loading overlay */
-        .loading-overlay {
-            position: fixed;
-            inset: 0;
-            background: #000000dd;
-            backdrop-filter: blur(20px);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .loading-overlay.show { display: flex; }
-        .glass-spinner {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, #ff66b5, #ffcc88, #ff66b5);
-            animation: spin 1.2s infinite linear;
-            mask: radial-gradient(farthest-side, transparent 70%, black 72%);
-            -webkit-mask: radial-gradient(farthest-side, transparent 70%, black 72%);
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-text {
-            font-weight: 600;
-            background: linear-gradient(135deg, #FF9FCF, #FFC79A);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-size: 18px;
-        }
-
-        /* Hidden state */
-        .content-hidden { display: none; }
-
-        /* PREMIUM HEADER */
-        .premium-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .vip-badge-modern {
-            background: linear-gradient(120deg, #ffae3c, #ff3c8e);
-            padding: 8px 24px;
-            border-radius: 60px;
-            font-weight: 800;
-            font-size: 14px;
-            letter-spacing: 2px;
-            color: white;
-            box-shadow: 0 5px 12px #ff3c8e30;
-            backdrop-filter: blur(4px);
-        }
-        .online-pulse {
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(8px);
-            border-radius: 60px;
-            padding: 8px 20px;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 120, 180, 0.5);
-        }
-        .online-pulse span {
-            color: #0aff9e;
-            margin-right: 6px;
-            display: inline-block;
-            animation: pulseGreen 1.4s infinite;
-        }
-        @keyframes pulseGreen { 0% { opacity: 1; text-shadow: 0 0 0 #0aff9e; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
-
-        /* HERO CARD PREMIUM */
-        .hero-premium-card {
-            background: linear-gradient(145deg, #15101f, #0e0b16);
-            border-radius: 44px;
-            margin-bottom: 28px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 100, 150, 0.6);
-            transition: 0.2s;
-            cursor: pointer;
-            box-shadow: 0 20px 35px -12px black;
-        }
-        .hero-img-area {
-            position: relative;
-            height: 260px;
-            overflow: hidden;
-        }
-        .hero-img-area img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(16px) brightness(0.7);
-            transition: 0.3s;
-        }
-        .hero-grad-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center, transparent 40%, #0b0710 90%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .play-icon-big {
-            font-size: 68px;
-            filter: drop-shadow(0 0 18px #ff4488);
-            background: rgba(0,0,0,0.4);
-            border-radius: 100px;
-            padding: 12px;
-            backdrop-filter: blur(8px);
-        }
-        .hero-title {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, #FFF, #FFC0E0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-top: 10px;
-        }
-        .hero-stats-row {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 60px;
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            font-size: 13px;
-            color: #ffd9e8;
-            border-left: 4px solid #ff4488;
-        }
-
-        /* CATEGORY PILLS MODERN */
-        .category-rainbow {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            padding: 8px 0 20px;
-            margin-bottom: 6px;
-            scrollbar-width: thin;
-        }
-        .pill-new {
-            background: rgba(25, 20, 40, 0.9);
-            backdrop-filter: blur(8px);
-            border-radius: 50px;
-            padding: 12px 24px;
-            font-weight: 700;
-            font-size: 14px;
-            white-space: nowrap;
-            border: 1px solid;
-            transition: 0.2s;
-            cursor: pointer;
-            letter-spacing: 0.5px;
-        }
-        .pill-new:nth-child(1) { border-color: #ff6080; color: #ffa0c0; }
-        .pill-new:nth-child(2) { border-color: #3cc7ff; color: #8ad4ff; }
-        .pill-new:nth-child(3) { border-color: #ffbb44; color: #ffda99; }
-        .pill-new:nth-child(4) { border-color: #c56aff; color: #e0bbff; }
-        .pill-new:nth-child(5) { border-color: #ff88aa; color: #ffc0d0; }
-        .pill-new:nth-child(6) { border-color: #6effb0; color: #b6ffd8; }
-        .pill-new:active { transform: scale(0.96); }
-
-        /* section header */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin: 28px 0 18px;
-        }
-        .section-header h3 {
-            font-size: 22px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #FFB5DA, #FF77AA);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .view-link {
-            font-size: 13px;
-            font-weight: 600;
-            color: #ff98c2;
-            border-bottom: 1px dashed #ff77aa;
-            cursor: pointer;
-        }
-
-        /* GLASS GRID (trending) */
-        .glass-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        .glass-card {
-            background: rgba(20, 16, 32, 0.65);
-            backdrop-filter: blur(12px);
-            border-radius: 32px;
-            padding: 14px;
-            border: 1px solid rgba(255, 100, 160, 0.3);
-            transition: 0.2s;
-            cursor: pointer;
-        }
-        .glass-card:active { transform: scale(0.98); background: rgba(30, 24, 45, 0.8);}
-        .card-img-blur {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 24px;
-            filter: blur(12px);
-            transition: 0.3s;
-            background: #2a1e30;
-        }
-        .card-badge-prem {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: linear-gradient(145deg, #ff3b6f, #ff9f4a);
-            padding: 5px 14px;
-            border-radius: 40px;
-            font-size: 10px;
-            font-weight: 800;
-            color: white;
-            letter-spacing: 1px;
-        }
-        .relative { position: relative; }
-        .card-title-row {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 16px;
-            font-weight: 800;
-            font-size: 16px;
-        }
-        .card-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #ccaadd;
-            border-top: 1px solid rgba(255, 120, 160, 0.3);
-            padding-top: 12px;
-        }
-
-        /* VIP GOLD BANNER */
-        .vip-gold-banner {
-            background: linear-gradient(115deg, #1f172a, #120d1c);
-            border-radius: 48px;
-            padding: 28px 20px;
-            margin: 30px 0;
-            border: 1px solid #ffcc66;
-            box-shadow: 0 0 24px rgba(255, 200, 100, 0.2);
-            cursor: pointer;
-            transition: 0.2s;
-            text-align: center;
+            border: 1px solid rgba(255, 100, 180, 0.6);
+            box-shadow: 0 0 60px rgba(255, 60, 120, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
             position: relative;
             overflow: hidden;
         }
-        .vip-gold-banner::before {
-            content: '';
+        .cinema-ticket::before {
+            content: "";
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.1), transparent 70%);
-            animation: rotateSlow 20s linear infinite;
+            background: radial-gradient(circle, rgba(255,80,140,0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
-        @keyframes rotateSlow { 100% { transform: rotate(360deg); } }
-        .offer-badge {
-            background: #ffb347;
-            display: inline-block;
-            padding: 5px 18px;
-            border-radius: 60px;
-            font-weight: 800;
-            color: #1c102c;
-            font-size: 13px;
+        .cinema-ticket::after {
+            content: "🎟️";
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 55px;
+            opacity: 0.2;
+            transform: rotate(-15deg);
         }
-        .gold-title {
-            font-size: 32px;
+        .movie-icon {
+            font-size: 72px;
+            filter: drop-shadow(0 0 15px #ff3388);
+            margin-bottom: 8px;
+            animation: floatIcon 2s ease-in-out infinite;
+        }
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        .cinema-ticket h2 {
+            font-size: 28px;
             font-weight: 900;
-            background: linear-gradient(135deg, #FFE6B0, #FFB347, #FF7E5F);
+            background: linear-gradient(135deg, #FFD89B, #FF6B8B, #C86DD7);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin: 18px 0 14px;
+            letter-spacing: -0.5px;
+        }
+        .popup-desc {
+            color: #ccc;
+            margin: 12px 0 20px;
+            font-size: 14px;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        /* Three buttons inside popup - UPDATED LUXURY STYLE */
+        .popup-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 10px 0 8px;
+        }
+        .popup-action-btn {
+            background: linear-gradient(115deg, #1f1b2e, #141027);
+            border: none;
+            padding: 15px 10px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 18px;
+            color: #fff0f5;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.3);
+            border-bottom: 2px solid rgba(255,255,255,0.15);
+        }
+        /* Individual button gradient variants */
+        .popup-action-btn:nth-child(1) {
+            background: linear-gradient(115deg, #2a1a3a, #1a0f2a);
+            border-left: 3px solid #FFB347;
+            border-right: 3px solid #FF6B8B;
+        }
+        .popup-action-btn:nth-child(2) {
+            background: linear-gradient(115deg, #1e2a3a, #121c2a);
+            border-left: 3px solid #FF6B8B;
+            border-right: 3px solid #C86DD7;
+        }
+        .popup-action-btn:nth-child(3) {
+            background: linear-gradient(115deg, #2a1e2e, #181026);
+            border-left: 3px solid #C86DD7;
+            border-right: 3px solid #FFB347;
+        }
+        .popup-action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .popup-action-btn:hover::before {
+            left: 100%;
+        }
+        .popup-action-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+        }
+        .popup-action-btn span {
+            font-size: 28px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000000cc;
+            backdrop-filter: blur(16px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .loading-overlay.show { display: flex; }
+        .film-spinner {
+            width: 70px;
+            height: 70px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ff6b8b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M8 4v16"/><path d="M16 4v16"/><path d="M2 8h4"/><path d="M2 12h4"/><path d="M2 16h4"/><path d="M18 8h4"/><path d="M18 12h4"/><path d="M18 16h4"/></svg>') no-repeat center;
+            background-size: contain;
+            animation: spinReel 1.2s infinite;
+        }
+        @keyframes spinReel { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .content-hidden { display: none; }
+
+        /* HEADER - STREAMING STYLE UPDATED */
+        .stream-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px 12px;
+            background: rgba(8, 8, 16, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 70, 120, 0.4);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+        .logo-premium {
+            font-weight: 900;
+            font-size: 20px;
+            background: linear-gradient(135deg, #F9D976, #F39F86, #FF6B8B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .badge-4k {
+            background: rgba(0,0,0,0.6);
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 800;
+            border: 1px solid #ff6b8b;
+            color: #ff9eb5;
         }
 
-        /* LIVE SECTION DUAL */
-        .live-dual {
+        /* Hero spotlight */
+        .featured-movie {
+            margin: 18px 20px 24px;
+            border-radius: 36px;
+            overflow: hidden;
+            background: #11101c;
+            border: 1px solid rgba(255, 80, 120, 0.6);
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 20px 30px -12px black;
+        }
+        .featured-img {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+        .featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(14px) brightness(0.75);
+            transition: 0.3s;
+        }
+        .featured-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .play-circle {
+            font-size: 70px;
+            filter: drop-shadow(0 0 18px #ff3b6f);
+            background: rgba(0,0,0,0.5);
+            border-radius: 100px;
+            padding: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .featured-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-top: 12px;
+            background: linear-gradient(135deg, #FFF, #FFB6C1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .movie-meta {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+            font-weight: 600;
+            font-size: 13px;
+            color: #ffd0dd;
+        }
+
+        .cat-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 8px 20px 20px;
+            scrollbar-width: thin;
+        }
+        .cat-item {
+            background: rgba(30, 28, 45, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+            border: 1px solid #ff5f8e;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .section-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 28px 20px 16px;
+        }
+        .section-row h3 {
+            font-size: 20px;
+            font-weight: 800;
+            border-left: 5px solid #ff5f8e;
+            padding-left: 12px;
+        }
+        .see-all {
+            font-size: 13px;
+            color: #ff9bb5;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 0 20px;
+        }
+        .movie-card {
+            background: rgba(18, 17, 28, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 100, 140, 0.3);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .movie-card:active { transform: scale(0.97); background: #201e34; }
+        .card-media {
+            position: relative;
+            height: 140px;
+        }
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(12px);
+        }
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(145deg, #ff3366, #ff884d);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 800;
+        }
+        .card-info {
+            padding: 14px 12px 12px;
+        }
+        .card-title {
+            font-weight: 800;
+            display: flex;
+            justify-content: space-between;
+        }
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #bbaad0;
+        }
+        .vip-pass {
+            background: linear-gradient(115deg, #1a142f, #0f0b1f);
+            margin: 32px 20px;
+            border-radius: 48px;
+            padding: 24px 20px;
+            border: 2px solid #ffbc6e;
+            cursor: pointer;
+            text-align: center;
+        }
+        .pass-glow {
+            font-size: 34px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FEE190, #FFB347, #FF6B8B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .live-row {
             display: flex;
             gap: 18px;
-            margin-bottom: 32px;
+            margin: 0 20px 30px;
         }
-        .live-modern-card {
+        .live-card {
             flex: 1;
-            background: rgba(18, 12, 28, 0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 36px;
-            padding: 14px;
-            border: 1px solid rgba(255, 80, 140, 0.5);
+            background: #131129;
+            border-radius: 32px;
+            padding: 12px;
+            border: 1px solid #ff678a;
             cursor: pointer;
         }
-        .live-img-blur {
+        .live-preview {
             width: 100%;
-            height: 120px;
+            height: 110px;
             object-fit: cover;
-            border-radius: 28px;
-            filter: blur(10px);
+            border-radius: 24px;
+            filter: blur(9px);
         }
-        .live-tag {
-            background: #ff2a5e;
+        .live-badge-red {
+            background: #e02b4b;
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 50px;
             font-size: 11px;
             font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 60px;
-            display: inline-block;
-            margin-top: 10px;
+            margin-top: 8px;
         }
-
-        /* HOT LINKS MODERN */
-        .hot-grid {
+        .hot-links-cinema {
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
-            margin: 36px 0 28px;
+            margin: 30px 20px 25px;
         }
-        .hot-modern-item {
-            background: rgba(30, 22, 48, 0.8);
-            backdrop-filter: blur(5px);
+        .hot-cinema {
             flex: 1 1 42%;
-            padding: 18px 6px;
-            border-radius: 38px;
+            background: #15122a;
+            padding: 16px 8px;
+            border-radius: 44px;
             text-align: center;
             font-weight: 700;
-            letter-spacing: 1px;
-            border-bottom: 3px solid #ff5f9e;
+            border-bottom: 4px solid #ff7b9c;
             cursor: pointer;
-            transition: 0.15s;
         }
-        .hot-modern-item:active { transform: scale(0.97); background: #2a1d3a; }
-
-        /* SPECIAL TWIN */
-        .twin-special {
+        .double-special {
             display: flex;
             gap: 18px;
-            margin: 28px 0;
+            margin: 20px 20px 30px;
         }
-        .special-sleek {
-            background: linear-gradient(145deg, #1b142b, #110c1c);
-            border-radius: 42px;
-            padding: 22px 16px;
+        .special-offer {
             flex: 1;
+            background: #120f22;
+            border-radius: 36px;
+            padding: 20px 12px;
             text-align: center;
-            border: 1px solid rgba(255, 100, 150, 0.6);
+            border: 1px solid #ff7b9c;
             cursor: pointer;
         }
-        .footer-glass {
+        .footer-cinema {
             text-align: center;
             padding: 28px;
-            background: rgba(16, 12, 24, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 48px;
+            background: #0a0914;
+            border-top: 1px solid #ff608030;
             font-size: 11px;
-            font-weight: 500;
-            margin-top: 30px;
+            margin-top: 20px;
         }
-
-        ::-webkit-scrollbar { width: 3px; height: 3px; }
-        ::-webkit-scrollbar-thumb { background: #ff66aa; border-radius: 20px; }
     </style>
 </head>
 <body>
-
-    <!-- Verification Overlay -->
+<div class="app-container">
+    <!-- POPUP OVERLAY: 3 BUTTONS DIRECTLY INSIDE FIRST VERIFICATION - UPDATED STYLE -->
     <div class="verify-overlay" id="verifyOverlay">
-        <div class="verify-card">
-            <div class="verify-glow">🔞💎</div>
+        <div class="cinema-ticket">
+            <div class="movie-icon">🎬</div>
             <h2>UNLOCK PREMIUM</h2>
-            <p>১৮+ কন্টেন্ট দেখতে একটি এড দেখুন<br>অভিজ্ঞতা আনলিমিটেড করুন</p>
-            <button class="watch-video-btn" id="watchVideoBtn">
-                ▶ WATCH AD & UNLOCK
-            </button>
+            <p class="popup-desc">✨ বিডিও জগতে প্রবেশ করতে যেকোনো একটি বেছে নিন ✨<br>একটি ভিডিও দেখুন এবং সম্পূর্ণ অ্যাক্সেস পান</p>
+            <div class="popup-buttons">
+                <div class="popup-action-btn" id="popupKidsBtn">
+                    <span>🥵</span> বাচ্চাদের ভিডিও
+                </div>
+                <div class="popup-action-btn" id="popupRussianBtn">
+                    <span>🔥</span> রাশিয়ান বিডিও
+                </div>
+                <div class="popup-action-btn" id="popupHdBtn">
+                    <span>🎬</span> play HD video
+                </div>
+            </div>
+            <p style="font-size: 11px; margin-top: 18px; opacity:0.7;">🎬 ভিডিও দেখার পর পুরো কন্টেন্ট আনলক হবে</p>
         </div>
     </div>
 
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="glass-spinner"></div>
-        <div class="loading-text">✨ প্রিমিয়াম এড দেখানো হচ্ছে ✨</div>
-        <div class="loading-text" style="font-size: 14px;">সুন্দর অভিজ্ঞতার জন্য অপেক্ষা করুন</div>
+        <div class="film-spinner"></div>
+        <div class="loading-text" style="color:#ff8aac; margin-top: 15px; font-weight:700;">LOADING 4K CINEMA ...</div>
     </div>
 
-    <div class="container content-hidden" id="mainContent">
-        <div class="premium-header">
-            <div class="vip-badge-modern">💎 DIAMOND ACCESS</div>
-            <div class="online-pulse"><span>⬤</span> <span id="onlineCounter">৪.২কে অনলাইন</span></div>
+    <!-- Main Content (initially hidden) -->
+    <div class="content-hidden" id="mainContent">
+        <div class="stream-header">
+            <div class="logo-premium">🎥 CINEMA<span style="color:#ff6b8b;"> PREMIUM</span></div>
+            <div class="badge-4k">4K ULTRA HD</div>
         </div>
 
-        <!-- Hero Premium Card -->
-        <div class="hero-premium-card" id="heroBlur">
-            <div class="hero-img-area">
-                <img src="https://i.ibb.co.com/Xk6JGmP6/dark-theme-of-video-player-window-in-a-night-mode.jpg" alt="premium" onerror="this.src='https://placehold.co/600x400/201530/ff88aa?text=VIP+EXCLUSIVE'">
-                <div class="hero-grad-overlay">
-                    <div class="play-icon-big">▶</div>
-                    <div class="hero-title">WATCH NOW</div>
+        <!-- Featured Movie Hero -->
+        <div class="featured-movie" id="heroBlur">
+            <div class="featured-img">
+                <img src="https://i.ibb.co.com/Xk6JGmP6/dark-theme-of-video-player-window-in-a-night-mode.jpg" alt="featured" onerror="this.src='https://placehold.co/600x400/1e1a2e/ff88aa?text=PREMIERE'">
+                <div class="featured-overlay">
+                    <div class="play-circle">▶</div>
+                    <div class="featured-title">NOW STREAMING</div>
                 </div>
-                <div class="hero-stats-row" id="heroStats">
-                    <span>🔥 <span id="heroViews">৩.২</span>M</span>
-                    <span>❤️ <span id="heroLikes">৬২৪</span>K</span>
-                    <span>💬 <span id="heroComments">১৮৯</span>K</span>
+                <div class="movie-meta" id="heroStats">
+                    <span>🔥 <span id="heroViews">৪.১</span>M views</span>
+                    <span>⭐ <span id="heroLikes">৮৫২</span>K</span>
+                    <span>💬 <span id="heroComments">২১৪</span>K</span>
                 </div>
             </div>
         </div>
 
-        <!-- Category pills (modern) -->
-        <div class="category-rainbow">
-            <div class="pill-new" id="pill1">🍑 বাংলা হট</div>
-            <div class="pill-new" id="pill2">🔞 ইন্ডিয়ান লিক</div>
-            <div class="pill-new" id="pill3">💦 সেক্সি টিন</div>
-            <div class="pill-new" id="pill4">🎥 ভাইরাল এমএমএস</div>
-            <div class="pill-new" id="pill5">👙 অডিও কল</div>
-            <div class="pill-new" id="pill6">🔥 ৪কে আল্ট্রা</div>
+        <div class="cat-scroll">
+            <div class="cat-item" id="pill1">🎬 ACTION</div>
+            <div class="cat-item" id="pill2">🔥 BOLLYWOOD</div>
+            <div class="cat-item" id="pill3">💋 ROMANCE 18+</div>
+            <div class="cat-item" id="pill4">🎥 EXCLUSIVE</div>
+            <div class="cat-item" id="pill5">🌙 WEBCAM</div>
+            <div class="cat-item" id="pill6">📀 4K COLLECTION</div>
         </div>
 
-        <!-- Trending Section -->
-        <div class="section-header">
-            <h3>⚡ TRENDING EXPLICIT</h3>
-            <span class="view-link" id="viewAllTrending">সবগুলো দেখুন ›</span>
+        <div class="section-row">
+            <h3>⚡ TRENDING NOW</h3>
+            <span class="see-all" id="viewAllTrending">ALL MOVIES ›</span>
         </div>
-
-        <div class="glass-grid" id="trendingGrid">
-            <!-- Card 1 -->
-            <div class="glass-card" id="trend1" data-link="https://t.me/khelahobe07_bot?startapp">
-                <div class="relative">
-                    <img class="card-img-blur" src="https://i.imgur.com/5vzBNBz.jpeg" onerror="this.src='https://placehold.co/300x250/302040/ff99cc?text=HOT'">
-                    <span class="card-badge-prem">ULTRA HD</span>
-                </div>
-                <div class="card-title-row"><span>🔞 কলেজ লিক</span><span style="color:#ffcc88;">★ <span class="rating1">4.8</span></span></div>
-                <div class="card-stats"><span>👁 <span class="view1">৭৮৯</span>K</span><span>❤️ <span class="like1">৫৬</span>K</span><span>💬 <span class="comment1">২৩</span>K</span></div>
+        <div class="movie-grid" id="trendingGrid">
+            <div class="movie-card" id="trend1" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">
+                <div class="card-media"><img src="https://i.imgur.com/5vzBNBz.jpeg"><span class="card-badge">HDR</span></div>
+                <div class="card-info"><div class="card-title"><span>🔞 College Diaries</span><span>★ <span class="rating1">4.8</span></span></div><div class="card-stats"><span>👁 <span class="view1">৭৮৯</span>K</span><span>❤️ <span class="like1">৫৬</span>K</span><span>💬 <span class="comment1">২৩</span>K</span></div></div>
             </div>
-            <div class="glass-card" id="trend2" data-link="https://t.me/khelahobe07_bot?startapp">
-                <div class="relative"><img class="card-img-blur" src="https://i.imgur.com/ZnFW6E2.jpeg"><span class="card-badge-prem">নতুন</span></div>
-                <div class="card-title-row"><span>💋 বাসর রাত</span><span>★ <span class="rating2">4.9</span></span></div>
-                <div class="card-stats"><span>👁 <span class="view2">১.২</span>M</span><span>❤️ <span class="like2">৮৯</span>K</span><span>💬 <span class="comment2">৪৫</span>K</span></div>
+            <div class="movie-card" id="trend2" data-link="https://t.me/khelahobe07_bot?startapp">
+                <div class="card-media"><img src="https://i.imgur.com/ZnFW6E2.jpeg"><span class="card-badge">NEW</span></div>
+                <div class="card-info"><div class="card-title"><span>💋 Wedding Night</span><span>★ <span class="rating2">4.9</span></span></div><div class="card-stats"><span>👁 <span class="view2">১.২</span>M</span><span>❤️ <span class="like2">৮৯</span>K</span><span>💬 <span class="comment2">৪৫</span>K</span></div></div>
             </div>
-            <div class="glass-card" id="trend3" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot/app">
-                <div class="relative"><img class="card-img-blur" src="https://i.imgur.com/UiW5o8Z.jpeg"><span class="card-badge-prem">ভাইরাল</span></div>
-                <div class="card-title-row"><span>👄 হোটেল রুম</span><span>★ <span class="rating3">4.7</span></span></div>
-                <div class="card-stats"><span>👁 <span class="view3">৫৬৫</span>K</span><span>❤️ <span class="like3">৪২</span>K</span><span>💬 <span class="comment3">১৮</span>K</span></div>
+            <div class="movie-card" id="trend3" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">
+                <div class="card-media"><img src="https://i.imgur.com/UiW5o8Z.jpeg"><span class="card-badge">VIRAL</span></div>
+                <div class="card-info"><div class="card-title"><span>👄 Hotel Room</span><span>★ <span class="rating3">4.7</span></span></div><div class="card-stats"><span>👁 <span class="view3">৫৬৫</span>K</span><span>❤️ <span class="like3">৪২</span>K</span><span>💬 <span class="comment3">১৮</span>K</span></div></div>
             </div>
-            <div class="glass-card" id="trend4" data-link="https://t.me/khelahobe07_bot?startapp">
-                <div class="relative"><img class="card-img-blur" src="https://i.imgur.com/R0XQv0T.jpeg"><span class="card-badge-prem">এক্সক্লুসিভ</span></div>
-                <div class="card-title-row"><span>🎭 সেক্রেটারি</span><span>★ <span class="rating4">4.9</span></span></div>
-                <div class="card-stats"><span>👁 <span class="view4">৯৯২</span>K</span><span>❤️ <span class="like4">৭৩</span>K</span><span>💬 <span class="comment4">৩১</span>K</span></div>
+            <div class="movie-card" id="trend4" data-link="https://t.me/khelahobe07_bot?startapp">
+                <div class="card-media"><img src="https://i.imgur.com/R0XQv0T.jpeg"><span class="card-badge">EXCLUSIVE</span></div>
+                <div class="card-info"><div class="card-title"><span>🎭 Secretary Affair</span><span>★ <span class="rating4">4.9</span></span></div><div class="card-stats"><span>👁 <span class="view4">৯৯২</span>K</span><span>❤️ <span class="like4">৭৩</span>K</span><span>💬 <span class="comment4">৩১</span>K</span></div></div>
             </div>
-            <div class="glass-card" id="trend5" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot/app">
-                <div class="relative"><img class="card-img-blur" src="https://i.imgur.com/sG7QqGh.jpeg"><span class="card-badge-prem">হট</span></div>
-                <div class="card-title-row"><span>💦 ম্যাসেজ সেন্টার</span><span>★ <span class="rating5">4.6</span></span></div>
-                <div class="card-stats"><span>👁 <span class="view5">৩৪৫</span>K</span><span>❤️ <span class="like5">২৮</span>K</span><span>💬 <span class="comment5">১২</span>K</span></div>
+            <div class="movie-card" id="trend5" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">
+                <div class="card-media"><img src="https://i.imgur.com/sG7QqGh.jpeg"><span class="card-badge">HOT</span></div>
+                <div class="card-info"><div class="card-title"><span>💦 Massage Center</span><span>★ <span class="rating5">4.6</span></span></div><div class="card-stats"><span>👁 <span class="view5">৩৪৫</span>K</span><span>❤️ <span class="like5">২৮</span>K</span><span>💬 <span class="comment5">১২</span>K</span></div></div>
             </div>
-            <div class="glass-card" id="trend6" data-link="https://t.me/khelahobe07_bot?startapp">
-                <div class="relative"><img class="card-img-blur" src="https://i.imgur.com/KLh6VhO.jpeg"><span class="card-badge-prem">আল্ট্রা</span></div>
-                <div class="card-title-row"><span>👙 হোস্টেল নাইট</span><span>★ <span class="rating6">4.8</span></span></div>
-                <div class="card-stats"><span>👁 <span class="view6">৮৮২</span>K</span><span>❤️ <span class="like6">৬৪</span>K</span><span>💬 <span class="comment6">২৭</span>K</span></div>
+            <div class="movie-card" id="trend6" data-link="https://t.me/khelahobe07_bot?startapp">
+                <div class="card-media"><img src="https://i.imgur.com/KLh6VhO.jpeg"><span class="card-badge">ULTRA 4K</span></div>
+                <div class="card-info"><div class="card-title"><span>👙 Hostel Nights</span><span>★ <span class="rating6">4.8</span></span></div><div class="card-stats"><span>👁 <span class="view6">৮৮২</span>K</span><span>❤️ <span class="like6">৬৪</span>K</span><span>💬 <span class="comment6">২৭</span>K</span></div></div>
             </div>
         </div>
 
-        <!-- VIP Gold Banner -->
-        <div class="vip-gold-banner" id="vipBanner" data-link="https://t.me/khelahobe07_bot?startapp">
-            <div class="offer-badge">🔥 LIMITED OFFER</div>
-            <div class="gold-title">UNLIMITED ACCESS</div>
-            <div style="background: rgba(255,220,150,0.1); border-radius: 60px; padding: 14px; margin: 10px 0; font-weight:800;">🚀 ৮০% ছাড় - আজই জয়েন করুন</div>
-            <p style="margin-top: 14px; opacity: 0.8;" id="vipViewer">৮.২কে জন এই অফার দেখেছেন</p>
+        <div class="vip-pass" id="vipBanner" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">
+            <span style="background:#f5b64240; padding:6px 18px; border-radius:40px; font-size:12px;">⭐ LIMITED PASS</span>
+            <div class="pass-glow" style="margin:16px 0;">UNLIMITED CINEMA PASS</div>
+            <div style="background: #00000060; border-radius: 40px; padding:12px; font-weight:800;">🚀 80% OFF — JOIN TODAY</div>
+            <p style="margin-top:14px; font-size:12px;" id="vipViewer">১২.৪K members joined</p>
         </div>
 
-        <!-- Live Section -->
-        <div class="section-header"><h3>🔴 LIVE NOW</h3><span class="view-link" id="viewAllLive">সকল লাইভ ›</span></div>
-        <div class="live-dual">
-            <div class="live-modern-card" id="live1" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">
-                <img class="live-img-blur" src="https://i.imgur.com/jUvXU8r.jpeg">
-                <div class="live-tag">🔴 লাইভ</div>
-                <p style="font-weight:800; margin-top: 10px;">হট জেসিকা</p>
-                <div style="display: flex; justify-content: space-between;"><span id="live1Viewers">২.৮কে দেখছে</span><span>❤️ <span id="live1Likes">১২.৪</span>কে</span></div>
+        <div class="section-row"><h3>🔴 LIVE NOW</h3><span class="see-all" id="viewAllLive">ALL STREAMS ›</span></div>
+        <div class="live-row">
+            <div class="live-card" id="live1" data-link="https://t.me/khelahobe07_bot?startapp">
+                <img class="live-preview" src="https://i.imgur.com/jUvXU8r.jpeg">
+                <div class="live-badge-red">🔴 LIVE</div>
+                <p style="font-weight:800; margin-top:10px;">Hot Jessica</p>
+                <div><span id="live1Viewers">২.৮K watching</span> ❤️ <span id="live1Likes">১২.৪</span>K</div>
             </div>
-            <div class="live-modern-card" id="live2" data-link="https://t.me/khelahobe07_bot?startapp">
-                <img class="live-img-blur" src="https://i.imgur.com/JH1cVWv.jpeg">
-                <div class="live-tag">🔴 লাইভ</div>
-                <p style="font-weight:800; margin-top: 10px;">প্রিয়া এক্স</p>
-                <div style="display: flex; justify-content: space-between;"><span id="live2Viewers">১.৯কে দেখছে</span><span>❤️ <span id="live2Likes">৮.৭</span>কে</span></div>
+            <div class="live-card" id="live2" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">
+                <img class="live-preview" src="https://i.imgur.com/JH1cVWv.jpeg">
+                <div class="live-badge-red">🔴 LIVE</div>
+                <p style="font-weight:800; margin-top:10px;">Priya X</p>
+                <div><span id="live2Viewers">১.৯K watching</span> ❤️ <span id="live2Likes">৮.৭</span>K</div>
             </div>
         </div>
 
-        <!-- Hot Links Premium Grid -->
-        <div class="hot-grid">
-            <div class="hot-modern-item" id="hotlink1" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">🔞 প্রাইভেট কালেকশন</div>
-            <div class="hot-modern-item" id="hotlink2" data-link="https://t.me/khelahobe07_bot?startapp">📹 অনুরোধের ভিডিও</div>
-            <div class="hot-modern-item" id="hotlink3" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">👄 অডিও ক্লিপস</div>
-            <div class="hot-modern-item" id="hotlink4" data-link="https://t.me/khelahobe07_bot?startapp">📸 নগ্ন ছবি</div>
-            <div class="hot-modern-item" id="hotlink5" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">🎮 ইন্টারঅ্যাকটিভ</div>
-            <div class="hot-modern-item" id="hotlink6" data-link="https://t.me/khelahobe07_bot?startapp">💎 ভিআইপি গ্রুপ</div>
+        <div class="hot-links-cinema">
+            <div class="hot-cinema" id="hotlink1" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">🎞️ PRIVATE COLLECTION</div>
+            <div class="hot-cinema" id="hotlink2" data-link="https://t.me/khelahobe07_bot?startapp">📹 REQUEST MOVIE</div>
+            <div class="hot-cinema" id="hotlink3" data-link="https://t.me/f785OSC7KPk4MGJl4abot?startapp">🎧 AUDIO CLIPS</div>
+            <div class="hot-cinema" id="hotlink4" data-link="https://t.me/khelahobe07_bot?startapp">📸 EXCLUSIVE PHOTOS</div>
+            <div class="hot-cinema" id="hotlink5" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">🎮 INTERACTIVE</div>
+            <div class="hot-cinema" id="hotlink6" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp">💎 VIP GROUP</div>
         </div>
 
-        <!-- Special twin -->
-        <div class="twin-special">
-            <div class="special-sleek" id="special1" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp"><span style="font-size:36px;">🎁</span><h3 style="margin:10px 0;">ফ্রি ট্রায়াল</h3><span id="trialTimer">২৪ ঘন্টা বাকি</span></div>
-            <div class="special-sleek" id="special2" data-link="https://t.me/khelahobe07_bot?startapp"><span style="font-size:36px;">💘</span><h3 style="margin:10px 0;">ম্যাচমেকিং</h3><span id="matchCount">১২৩ অনলাইন</span></div>
+        <div class="double-special">
+            <div class="special-offer" id="special1" data-link="https://t.me/khelahobe07_bot?startapp"><span style="font-size:34px;">🎁</span><h3>FREE TRIAL</h3><span id="trialTimer">24h left</span></div>
+            <div class="special-offer" id="special2" data-link="https://t.me/o0Uq6h5R0p80ZGE1bot?startapp"><span style="font-size:34px;">💘</span><h3>MATCH & DATE</h3><span id="matchCount">১২৩ online</span></div>
         </div>
-
-        <div class="footer-glass">
-            ⚠️ শুধুমাত্র ১৮+ ব্যবহারকারীদের জন্য । প্রিমিয়াম আনলিমিটেড <br>
-            <span style="color:#ff8ac0;">💎 PREMIUM 18+ • ULTRA HD VISUALS</span>
+        <div class="footer-cinema">
+            🎬 18+ CINEMA PREMIUM • 4K STREAMING<br>
+            <span style="color:#ff7b9c;">UNLIMITED ACCESS | HD QUALITY</span>
         </div>
     </div>
+</div>
 
-    <script>
-        const DEFAULT_AD_LINK = "https://t.me/o0Uq6h5R0p80ZGE1bot?startapp";
-        const verifyOverlay = document.getElementById('verifyOverlay');
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        const mainContent = document.getElementById('mainContent');
-        let verificationDone = false;
+<script>
+    // ---------- ADSGRAM ZONE CONFIGURATION ----------
+    const DEFAULT_BLOCK_ID = "27652";
+    
+    // Dedicated zone IDs for the three popup buttons
+    const POPUP_ZONE_IDS = {
+        kids: "int-27345",     // বাচ্চাদের ভিডিও zone id (Replace with actual)
+        russian: "int-27345",  // রাশিয়ান বিডিও zone id (Replace with actual)
+        hd: "int-27345"       // play HD video zone id (Replace with actual)
+    };
 
-        function showAdsgramAd(redirectUrl) {
-            return new Promise((resolve) => {
-                if (typeof Adsgram === 'undefined') {
-                    console.warn("Adsgram not loaded");
-                    resolve(true);
-                    return;
-                }
-                try {
-                    const AdController = Adsgram.init({ blockId: "int-27345" });
-                    AdController.show().then(() => resolve(true)).catch(() => resolve(true));
-                } catch(e) { resolve(true); }
-            });
-        }
+    const DEFAULT_AD_LINK = "https://t.me/o0Uq6h5R0p80ZGE1bot?startapp";
+    const verifyOverlay = document.getElementById('verifyOverlay');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const mainContent = document.getElementById('mainContent');
+    let isUnlocked = false;
 
-        async function handleElementClick(event, redirectUrl) {
-            if (!verificationDone) { alert("দয়া করে প্রথমে 'WATCH AD & UNLOCK' বাটনে ক্লিক করুন!"); return; }
-            event.stopPropagation();
-            const finalUrl = redirectUrl || DEFAULT_AD_LINK;
-            loadingOverlay.classList.add('show');
-            await showAdsgramAd(finalUrl);
-            loadingOverlay.classList.remove('show');
-            window.location.href = finalUrl;
-        }
-
-        async function handleWatchVideoClick() {
-            const btn = document.getElementById('watchVideoBtn');
-            btn.disabled = true;
-            btn.innerHTML = '⏳ লোডিং...';
-            loadingOverlay.classList.add('show');
-            await showAdsgramAd(null);
-            loadingOverlay.classList.remove('show');
-            verificationDone = true;
-            verifyOverlay.classList.add('hide');
-            mainContent.classList.remove('content-hidden');
-            generateRealisticStats();
-            startAutoStatsUpdate();
-            attachAllListeners();
-        }
-
-        function attachAllListeners() {
-            const hero = document.getElementById('heroBlur');
-            if(hero) hero.addEventListener('click', (e) => handleElementClick(e, DEFAULT_AD_LINK));
-            const pills = ['pill1','pill2','pill3','pill4','pill5','pill6'];
-            pills.forEach(p => { const el = document.getElementById(p); if(el) el.addEventListener('click',(e)=>handleElementClick(e, DEFAULT_AD_LINK)); });
-            const trends = ['trend1','trend2','trend3','trend4','trend5','trend6'];
-            trends.forEach(t => { const el = document.getElementById(t); if(el) { const link = el.getAttribute('data-link') || DEFAULT_AD_LINK; el.addEventListener('click',(e)=>handleElementClick(e, link)); } });
-            document.getElementById('viewAllTrending')?.addEventListener('click',(e)=>handleElementClick(e, DEFAULT_AD_LINK));
-            document.getElementById('viewAllLive')?.addEventListener('click',(e)=>handleElementClick(e, DEFAULT_AD_LINK));
-            document.getElementById('vipBanner')?.addEventListener('click',(e)=>handleElementClick(e, DEFAULT_AD_LINK));
-            const lives = ['live1','live2'];
-            lives.forEach(l => { const el = document.getElementById(l); if(el) { const link = el.getAttribute('data-link')||DEFAULT_AD_LINK; el.addEventListener('click',(e)=>handleElementClick(e,link)); } });
-            const hotlinks = ['hotlink1','hotlink2','hotlink3','hotlink4','hotlink5','hotlink6'];
-            hotlinks.forEach(h => { const el = document.getElementById(h); if(el) { const link = el.getAttribute('data-link')||DEFAULT_AD_LINK; el.addEventListener('click',(e)=>handleElementClick(e,link)); } });
-            const specials = ['special1','special2'];
-            specials.forEach(s => { const el = document.getElementById(s); if(el) { const link = el.getAttribute('data-link')||DEFAULT_AD_LINK; el.addEventListener('click',(e)=>handleElementClick(e,link)); } });
-        }
-
-        function generateRealisticStats() {
+    function showAdsgramAdWithZone(zoneBlockId) {
+        return new Promise((resolve) => {
+            if (typeof Adsgram === 'undefined') {
+                console.warn("Adsgram not loaded");
+                resolve(true);
+                return;
+            }
             try {
-                document.getElementById('heroViews') && (document.getElementById('heroViews').innerHTML = (Math.random()*2+2.5).toFixed(1));
-                document.getElementById('heroLikes') && (document.getElementById('heroLikes').innerHTML = Math.floor(Math.random()*300+450));
-                document.getElementById('heroComments') && (document.getElementById('heroComments').innerHTML = Math.floor(Math.random()*100+130));
-                const views = ['.view1','.view2','.view3','.view4','.view5','.view6'];
-                const likes = ['.like1','.like2','.like3','.like4','.like5','.like6'];
-                const comments = ['.comment1','.comment2','.comment3','.comment4','.comment5','.comment6'];
-                const ratings = ['.rating1','.rating2','.rating3','.rating4','.rating5','.rating6'];
-                for(let i=0;i<views.length;i++){
-                    document.querySelector(views[i]) && (document.querySelector(views[i]).innerHTML = Math.floor(Math.random()*400+500));
-                    document.querySelector(likes[i]) && (document.querySelector(likes[i]).innerHTML = Math.floor(Math.random()*60+30));
-                    document.querySelector(comments[i]) && (document.querySelector(comments[i]).innerHTML = Math.floor(Math.random()*30+15));
-                    document.querySelector(ratings[i]) && (document.querySelector(ratings[i]).innerHTML = (Math.random()*0.5+4.5).toFixed(1));
-                }
-                document.getElementById('live1Viewers') && (document.getElementById('live1Viewers').innerHTML = (Math.random()*2+1.8).toFixed(1)+'কে দেখছে');
-                document.getElementById('live1Likes') && (document.getElementById('live1Likes').innerHTML = (Math.random()*5+10).toFixed(1));
-                document.getElementById('live2Viewers') && (document.getElementById('live2Viewers').innerHTML = (Math.random()*1.8+1.2).toFixed(1)+'কে দেখছে');
-                document.getElementById('live2Likes') && (document.getElementById('live2Likes').innerHTML = (Math.random()*4+7).toFixed(1));
-                const online = Math.floor(Math.random()*3000+3800);
-                document.getElementById('onlineCounter') && (document.getElementById('onlineCounter').innerHTML = `${online.toLocaleString()} অনলাইন`);
-                const vipViews = Math.floor(Math.random()*5000+7000);
-                document.getElementById('vipViewer') && (document.getElementById('vipViewer').innerHTML = `${vipViews.toLocaleString()} জন এই অফার দেখেছেন`);
-                const hrs = Math.floor(Math.random()*12+18);
-                const mins = Math.floor(Math.random()*60);
-                document.getElementById('trialTimer') && (document.getElementById('trialTimer').innerHTML = `${hrs} ঘন্টা ${mins} মিনিট বাকি`);
-                const matchOnline = Math.floor(Math.random()*200+80);
-                document.getElementById('matchCount') && (document.getElementById('matchCount').innerHTML = `${matchOnline} অনলাইন`);
-            } catch(e){}
+                const AdController = Adsgram.init({ blockId: zoneBlockId });
+                AdController.show().then(() => resolve(true)).catch(() => resolve(true));
+            } catch(e) {
+                resolve(true);
+            }
+        });
+    }
+
+    async function handleElementClickWithAd(event, redirectUrl) {
+        if (!isUnlocked) {
+            alert("প্রথমে পপআপ থেকে যেকোনো একটি বাটনে ক্লিক করুন!");
+            return;
         }
-        function startAutoStatsUpdate(){ setInterval(generateRealisticStats, 5500); }
-        document.getElementById('watchVideoBtn').addEventListener('click', handleWatchVideoClick);
-    </script>
+        event.stopPropagation();
+        const finalUrl = redirectUrl || DEFAULT_AD_LINK;
+        loadingOverlay.classList.add('show');
+        await showAdsgramAdWithZone(DEFAULT_BLOCK_ID);
+        loadingOverlay.classList.remove('show');
+        window.location.href = finalUrl;
+    }
+
+    async function unlockSiteAfterAd(zoneId) {
+        loadingOverlay.classList.add('show');
+        await showAdsgramAdWithZone(zoneId);
+        loadingOverlay.classList.remove('show');
+        isUnlocked = true;
+        verifyOverlay.classList.add('hide');
+        mainContent.classList.remove('content-hidden');
+        generateRealisticStats();
+        startAutoStatsUpdate();
+        attachAllPostUnlockListeners();
+    }
+
+    function attachAllPostUnlockListeners() {
+        const hero = document.getElementById('heroBlur');
+        if(hero) hero.addEventListener('click', (e) => handleElementClickWithAd(e, DEFAULT_AD_LINK));
+        
+        const pills = ['pill1','pill2','pill3','pill4','pill5','pill6'];
+        pills.forEach(p => { const el = document.getElementById(p); if(el) el.addEventListener('click',(e)=>handleElementClickWithAd(e, DEFAULT_AD_LINK)); });
+        
+        const trends = ['trend1','trend2','trend3','trend4','trend5','trend6'];
+        trends.forEach(t => { const el = document.getElementById(t); if(el) { const link = el.getAttribute('data-link') || DEFAULT_AD_LINK; el.addEventListener('click',(e)=>handleElementClickWithAd(e, link)); } });
+        
+        document.getElementById('viewAllTrending')?.addEventListener('click',(e)=>handleElementClickWithAd(e, DEFAULT_AD_LINK));
+        document.getElementById('viewAllLive')?.addEventListener('click',(e)=>handleElementClickWithAd(e, DEFAULT_AD_LINK));
+        
+        const vip = document.getElementById('vipBanner');
+        if(vip) vip.addEventListener('click',(e)=>handleElementClickWithAd(e, DEFAULT_AD_LINK));
+        
+        const live1 = document.getElementById('live1'), live2 = document.getElementById('live2');
+        if(live1) { const link = live1.getAttribute('data-link')||DEFAULT_AD_LINK; live1.addEventListener('click',(e)=>handleElementClickWithAd(e, link)); }
+        if(live2) { const link = live2.getAttribute('data-link')||DEFAULT_AD_LINK; live2.addEventListener('click',(e)=>handleElementClickWithAd(e, link)); }
+        
+        const hotlinks = ['hotlink1','hotlink2','hotlink3','hotlink4','hotlink5','hotlink6'];
+        hotlinks.forEach(h => { const el = document.getElementById(h); if(el) { const link = el.getAttribute('data-link')||DEFAULT_AD_LINK; el.addEventListener('click',(e)=>handleElementClickWithAd(e, link)); } });
+        
+        const specials = ['special1','special2'];
+        specials.forEach(s => { const el = document.getElementById(s); if(el) { const link = el.getAttribute('data-link')||DEFAULT_AD_LINK; el.addEventListener('click',(e)=>handleElementClickWithAd(e, link)); } });
+    }
+
+    async function onPopupKids() { if (!isUnlocked) await unlockSiteAfterAd(POPUP_ZONE_IDS.kids); }
+    async function onPopupRussian() { if (!isUnlocked) await unlockSiteAfterAd(POPUP_ZONE_IDS.russian); }
+    async function onPopupHd() { if (!isUnlocked) await unlockSiteAfterAd(POPUP_ZONE_IDS.hd); }
+
+    document.getElementById('popupKidsBtn')?.addEventListener('click', onPopupKids);
+    document.getElementById('popupRussianBtn')?.addEventListener('click', onPopupRussian);
+    document.getElementById('popupHdBtn')?.addEventListener('click', onPopupHd);
+
+    function generateRealisticStats() {
+        try {
+            if(document.getElementById('heroViews')) document.getElementById('heroViews').innerHTML = (Math.random() * 2 + 3.5).toFixed(1);
+            if(document.getElementById('heroLikes')) document.getElementById('heroLikes').innerHTML = Math.floor(Math.random() * 300 + 650);
+            if(document.getElementById('heroComments')) document.getElementById('heroComments').innerHTML = Math.floor(Math.random() * 100 + 180);
+            const views = ['.view1','.view2','.view3','.view4','.view5','.view6'];
+            const likes = ['.like1','.like2','.like3','.like4','.like5','.like6'];
+            const comments = ['.comment1','.comment2','.comment3','.comment4','.comment5','.comment6'];
+            const ratings = ['.rating1','.rating2','.rating3','.rating4','.rating5','.rating6'];
+            for(let i=0;i<views.length;i++){
+                if(document.querySelector(views[i])) document.querySelector(views[i]).innerHTML = Math.floor(Math.random() * 400 + 550);
+                if(document.querySelector(likes[i])) document.querySelector(likes[i]).innerHTML = Math.floor(Math.random() * 60 + 35);
+                if(document.querySelector(comments[i])) document.querySelector(comments[i]).innerHTML = Math.floor(Math.random() * 35 + 18);
+                if(document.querySelector(ratings[i])) document.querySelector(ratings[i]).innerHTML = (Math.random() * 0.5 + 4.5).toFixed(1);
+            }
+            if(document.getElementById('live1Viewers')) document.getElementById('live1Viewers').innerHTML = (Math.random() * 2 + 1.8).toFixed(1)+'K watching';
+            if(document.getElementById('live1Likes')) document.getElementById('live1Likes').innerHTML = (Math.random() * 5 + 10).toFixed(1);
+            if(document.getElementById('live2Viewers')) document.getElementById('live2Viewers').innerHTML = (Math.random() * 1.8 + 1.2).toFixed(1)+'K watching';
+            if(document.getElementById('live2Likes')) document.getElementById('live2Likes').innerHTML = (Math.random() * 4 + 7).toFixed(1);
+            const vipViews = Math.floor(Math.random() * 8000 + 10000);
+            if(document.getElementById('vipViewer')) document.getElementById('vipViewer').innerHTML = `${vipViews.toLocaleString()} members joined`;
+            const hrs = Math.floor(Math.random() * 12 + 18);
+            if(document.getElementById('trialTimer')) document.getElementById('trialTimer').innerHTML = `${hrs} hours left`;
+            const matchOnline = Math.floor(Math.random() * 250 + 100);
+            if(document.getElementById('matchCount')) document.getElementById('matchCount').innerHTML = `${matchOnline} online`;
+        } catch(e){}
+    }
+    function startAutoStatsUpdate(){ setInterval(generateRealisticStats, 5500); }
+</script>
 </body>
 </html>
